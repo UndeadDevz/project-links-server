@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { IUser } from './userDTO/userDTO';
-import { Prisma } from '@prisma/client';
+import { Prisma, User } from '@prisma/client';
 
 @Injectable()
 export class UserService {
@@ -9,6 +9,22 @@ export class UserService {
 
     async findAll(): Promise<IUser[]> {
         return this.prisma.user.findMany()
+    }
+
+    async findUserWhitTemplates(user_id: string): Promise<User[]> {
+        return this.prisma.user.findMany({
+            where: {
+                user_id
+            },
+            include: {
+                template: {
+                    select: {
+                        name: true,
+                        template_id: true
+                    }
+                }
+            }
+        })
     }
 
     async createUser(data: Prisma.UserCreateInput): Promise<IUser> {

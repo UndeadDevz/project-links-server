@@ -18,16 +18,7 @@ model User {
 
 model Template {
   template_id       String @id @default(auto()) @map("_id") @db.ObjectId
-  owner User @relation(fields: [template_id], references: [user_id])
+  owner User @relation(fields: [owner_id], references: [user_id])
+  owner_id String @db.ObjectId
   name String
-  links_id String[] @db.ObjectId 
-  links Link[] @relation(fields: [links_id], references: [id])
-}
-
-model Link {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
-  templates Template[] @relation(fields: [template_id], references: [template_id])
-  name String
-  link String
-  template_id String[] @db.ObjectId
 }
