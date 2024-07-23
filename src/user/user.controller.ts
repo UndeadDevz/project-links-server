@@ -8,7 +8,6 @@ import { AuthGuard } from 'src/auth/auth.guard';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @UseGuards(AuthGuard)
   @Get()
   getAllUsers(): Promise<IUser[]> {
     return this.userService.findAll();
