@@ -6,12 +6,21 @@ import { UserController } from './user/user.controller';
 import { TemplateController } from './template/template.controller';
 import { TemplateService } from './template/template.service';
 import { PrismaService } from './prisma/prisma.service';
-import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { JwtService } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { JwtStrategy } from './strategy/jwt.strategy';
 
 @Module({
-  imports: [AuthModule, ConfigModule.forRoot()],
+  imports: [ConfigModule.forRoot(), PassportModule],
   controllers: [AppController, UserController, TemplateController],
-  providers: [AppService, UserService, TemplateService, PrismaService],
+  providers: [
+    AppService,
+    UserService,
+    TemplateService,
+    PrismaService,
+    JwtService,
+    JwtStrategy,
+  ],
 })
 export class AppModule {}
