@@ -17,8 +17,35 @@ model User {
 }
 
 model Template {
-  template_id       String @id @default(auto()) @map("_id") @db.ObjectId
-  owner User @relation(fields: [owner_id], references: [user_id])
-  owner_id String @db.ObjectId
-  name String
+  template_id String   @id @default(auto()) @map("_id") @db.ObjectId
+  owner       User     @relation(fields: [owner_id], references: [user_id])
+  owner_id    String   @db.ObjectId
+  name        String
+  background  String
+  photo       String
+  headings    Heading[]
+  links       Link[]
+}
+
+model Heading {
+  heading_id  String   @id @default(auto()) @map("_id") @db.ObjectId
+  fontSize    String   @map("font_size")
+  fontFamily  String   @map("font_family")
+  fontColor   String   @map("font_color")
+  fontWeight  String   @map("font_weight")
+  template_id String   @db.ObjectId
+  template    Template @relation(fields: [template_id], references: [template_id])
+}
+
+model Link {
+  link_id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  background    String
+  borderColor   String   @map("border_color")
+  borderWidth   String   @map("border_width")
+  borderRadius  String   @map("border_radius")
+  url           String
+  hoverAnimation String  @map("hover_animation")
+  template_id   String   @db.ObjectId
+  template      Template @relation(fields: [template_id], references: [template_id])
 }
