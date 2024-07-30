@@ -13,7 +13,6 @@ export class TemplateController {
 
     @Post(":user_id")
     createTemplate(@Param("user_id") user_id, @Body() data: Prisma.TemplateCreateInput): Promise<Template> {
-        console.log("user id", user_id)
         return this.templateService.createTemplate(user_id, data)
     }
 }
