@@ -23,23 +23,39 @@ model Template {
   name        String
   background  String
   photo       String
-  headings    Heading[]
-  links       Link[]
+  title       Title
+  items       Element
+  linkStyle   LinkStyle
 }
 
-type Heading {
+type Title {
+  text       String
   fontSize   String
   fontFamily String
   fontColor  String
   fontWeight String
 }
 
+type Element {
+  links Link[]
+  header Header[]
+}
+
+type Header {
+  text     String
+  position Int
+}
+
 type Link {
-  name           String
+  name  String
+  url   String
+  position Int
+}
+
+type LinkStyle {
   background     String
   borderColor    String
   borderWidth    String
   borderRadius   String
-  url            String
   hoverAnimation String
 }
