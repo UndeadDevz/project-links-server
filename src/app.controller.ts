@@ -1,7 +1,6 @@
-import { Controller, Get, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Get } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller("image")
 export class AppController {
   constructor(
     private readonly appService: AppService,
