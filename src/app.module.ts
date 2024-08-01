@@ -8,9 +8,10 @@ import { TemplateService } from './template/template.service';
 import { PrismaService } from './prisma/prisma.service';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
 @Module({
-  imports: [AuthModule, ConfigModule.forRoot()],
+  imports: [AuthModule, ConfigModule.forRoot(), CloudinaryModule],
   controllers: [AppController, UserController, TemplateController],
   providers: [AppService, UserService, TemplateService, PrismaService],
 })
