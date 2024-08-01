@@ -26,6 +26,7 @@ model Template {
   title       Title
   items       Element
   linkStyle   LinkStyle
+  headerStyle HeaderStyle
 }
 
 type Title {
@@ -38,18 +39,20 @@ type Title {
 
 type Element {
   links Link[]
-  header Header[]
+  headers Header[]
 }
 
 type Header {
   text     String
   position Int
+  enabled Boolean
 }
 
 type Link {
-  name  String
-  url   String
+  name      String
+  url      String
   position Int
+  enabled  Boolean
 }
 
 type LinkStyle {
@@ -58,4 +61,10 @@ type LinkStyle {
   borderWidth    String
   borderRadius   String
   hoverAnimation String
+}
+
+type HeaderStyle {
+  fontSize  String
+  fontColor String
+  fontWeight String
 }
