@@ -10,9 +10,10 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { ImageModule } from './image/image.module';
+import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [AuthModule, ConfigModule.forRoot(), CloudinaryModule, ImageModule],
+  imports: [AuthModule, ConfigModule.forRoot(), CloudinaryModule, ImageModule, UserModule],
   controllers: [AppController, UserController, TemplateController],
   providers: [AppService, UserService, TemplateService, PrismaService],
 })

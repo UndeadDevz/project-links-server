@@ -9,11 +9,11 @@ export class SharpPipe implements PipeTransform<Express.Multer.File, Promise<any
         const originalName = path.parse(image.originalname).name;
         const filename = Date.now() + "-" + originalName + '.webp'
 
-       const buffer= await sharp(image.buffer)
+        const buffer = await sharp(image.buffer)
             .resize(450)
             .webp({ effort: 3 })
             .toBuffer()
 
-        return {buffer, filename}
+        return { buffer, filename }
     }
 }
