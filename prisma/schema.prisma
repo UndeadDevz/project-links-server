@@ -14,6 +14,7 @@ model User {
   image_url String?
   password  String
   template  Template[]
+  media     String[]
 }
 
 model Template {
@@ -38,18 +39,18 @@ type Title {
 }
 
 type Element {
-  links Link[]
+  links   Link[]
   headers Header[]
 }
 
 type Header {
   text     String
   position Int
-  enabled Boolean
+  enabled  Boolean
 }
 
 type Link {
-  name      String
+  name     String
   url      String
   position Int
   enabled  Boolean
