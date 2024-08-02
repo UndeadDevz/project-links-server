@@ -10,10 +10,14 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { ImageModule } from './image/image.module';
+import { MulterModule } from '@nestjs/platform-express';
+import { memoryStorage } from 'multer';
 
 @Module({
-  imports: [AuthModule, ConfigModule.forRoot(), CloudinaryModule, ImageModule],
+  imports: [AuthModule, ConfigModule.forRoot(), CloudinaryModule, ImageModule, MulterModule.register({
+    storage: memoryStorage()
+  })],
   controllers: [AppController, UserController, TemplateController],
   providers: [AppService, UserService, TemplateService, PrismaService],
 })
-export class AppModule {}
+export class AppModule { }
