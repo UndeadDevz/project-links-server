@@ -16,4 +16,4 @@ import { ImageModule } from './image/image.module';
   controllers: [AppController, UserController, TemplateController],
   providers: [AppService, UserService, TemplateService, PrismaService],
 })
-export class AppModule {}
+export class AppModule { }
