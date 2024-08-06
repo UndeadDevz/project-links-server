@@ -1,15 +1,13 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { UserService } from './user.service';
-import { IUser } from './userDTO/userDTO';
 import { Prisma, User } from '@prisma/client';
-import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Get()
-  getAllUsers(): Promise<IUser[]> {
+  getAllUsers(): Promise<User[]> {
     return this.userService.findAll();
   }
 
@@ -19,7 +17,7 @@ export class UserController {
   }
 
   @Post()
-  createUser(@Body() userData: Prisma.UserCreateInput): Promise<IUser> {
+  createUser(@Body() userData: Prisma.UserCreateInput): Promise<User> {
     return this.userService.createUser(userData);
   }
 }
