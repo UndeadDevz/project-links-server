@@ -16,7 +16,7 @@ export class UserService {
     private jwt: JwtService,
   ) {}
 
-  async findAll(): Promise<IUser[]> {
+  async findAll(): Promise<User[]> {
     return this.prisma.user.findMany();
   }
 
@@ -36,7 +36,7 @@ export class UserService {
     });
   }
 
-  async createUser(data: Prisma.UserCreateInput): Promise<IUser> {
+  async createUser(data: Prisma.UserCreateInput): Promise<User> {
     return this.prisma.user.create({
       data,
     });

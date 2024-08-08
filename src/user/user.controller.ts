@@ -27,7 +27,7 @@ export class UserController {
   }
 
   @Post('register')
-  createUser(@Body() userData: Prisma.UserCreateInput): Promise<IUser> {
+  createUser(@Body() userData: Prisma.UserCreateInput): Promise<User> {
     return this.userService.createUser(userData);
   }
 

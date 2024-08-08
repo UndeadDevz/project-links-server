@@ -22,4 +22,6 @@ export class CreateUserDto {
   readonly password: string;
   @IsString()
   readonly image_url: string;
+  readonly template: ITemplate[];
+  readonly media: string[];
 }
