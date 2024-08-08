@@ -7,12 +7,21 @@ import { TemplateController } from './template/template.controller';
 import { TemplateService } from './template/template.service';
 import { PrismaService } from './prisma/prisma.service';
 import { ConfigModule } from '@nestjs/config';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { ImageModule } from './image/image.module';
+import { UserModule } from './user/user.module';
 import { JwtService } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './strategy/jwt.strategy';
 
 @Module({
-  imports: [ConfigModule.forRoot(), PassportModule],
+  imports: [
+    ConfigModule.forRoot(),
+    CloudinaryModule,
+    ImageModule,
+    UserModule,
+    PassportModule,
+  ],
   controllers: [AppController, UserController, TemplateController],
   providers: [
     AppService,

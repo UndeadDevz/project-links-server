@@ -128,4 +128,15 @@ export class UserService {
       refresh_token: refreshToken,
     };
   }
+
+  async addImageToMedia(user_id: string, url: string): Promise<User> {
+    return this.prisma.user.update({
+      where: { user_id },
+      data: {
+        media: {
+          push: url,
+        },
+      },
+    });
+  }
 }

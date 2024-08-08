@@ -1,3 +1,4 @@
+import { ITemplate } from 'src/template/templateDTO/templateDTO';
 import { IsString, IsEmail, MinLength, IsNotEmpty } from 'class-validator';
 
 export interface IUser {
@@ -6,6 +7,8 @@ export interface IUser {
   username: string;
   image_url: string;
   password: string;
+  template: ITemplate[];
+  media: string[];
 }
 
 export class CreateUserDto {

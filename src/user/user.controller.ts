@@ -17,7 +17,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  getAllUsers(): Promise<IUser[]> {
+  getAllUsers(): Promise<User[]> {
     return this.userService.findAll();
   }
 

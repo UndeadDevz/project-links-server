@@ -9,11 +9,12 @@ datasource db {
 
 model User {
   user_id   String @id @default(auto()) @map("_id") @db.ObjectId
-  email String  @unique
+  email     String  @unique
   username  String @unique
   image_url String?
-  password String
-  template Template[]
+  password  String
+  template  Template[]
+  media     String[]
 }
 
 model Template {
@@ -23,29 +24,51 @@ model Template {
   name        String
   background  String
   photo       String
-  headings    Heading[]
-  links       Link[]
+  title       Title
+  items       Element
+  linkStyle   LinkStyle
+  headerStyle HeaderStyle
 }
 
-model Heading {
-  heading_id  String   @id @default(auto()) @map("_id") @db.ObjectId
-  fontSize    String   @map("font_size")
-  fontFamily  String   @map("font_family")
-  fontColor   String   @map("font_color")
-  fontWeight  String   @map("font_weight")
-  template_id String   @db.ObjectId
-  template    Template @relation(fields: [template_id], references: [template_id])
+type Title {
+  text       String
+  fontSize   String
+  fontFamily String
+  fontColor  String
+  fontWeight String
 }
 
-model Link {
-  link_id       String   @id @default(auto()) @map("_id") @db.ObjectId
-  name          String
-  background    String
-  borderColor   String   @map("border_color")
-  borderWidth   String   @map("border_width")
-  borderRadius  String   @map("border_radius")
-  url           String
-  hoverAnimation String  @map("hover_animation")
-  template_id   String   @db.ObjectId
-  template      Template @relation(fields: [template_id], references: [template_id])
+type Element {
+  links   Link[]
+  headers Header[]
+}
+
+type Header {
+  text     String
+  position Int
+  enabled  Boolean
+}
+
+type Link {
+  name     String
+  url      String
+  position Int
+  enabled  Boolean
+}
+
+type LinkStyle {
+  background     String
+  borderColor    String
+  borderWidth    String
+  borderRadius   String
+  hoverAnimation String
+  fontSize  String
+  fontColor String
+  fontWeight String
+}
+
+type HeaderStyle {
+  fontSize  String
+  fontColor String
+  fontWeight String
 }
