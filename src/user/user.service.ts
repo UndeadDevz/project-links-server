@@ -67,7 +67,7 @@ export class UserService {
         message: 'Login Successful',
       };
     } else {
-      return 'Incorrecto';
+      return { message: 'Incorrecto' };
     }
   }
 
