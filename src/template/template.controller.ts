@@ -1,14 +1,24 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req } from '@nestjs/common';
 import { TemplateService } from './template.service';
 import { Prisma, Template } from '@prisma/client';
+import { JwtService } from '@nestjs/jwt';
 
 @Controller('template')
 export class TemplateController {
-  constructor(private readonly templateService: TemplateService) {}
+  constructor(
+    private readonly templateService: TemplateService,
+    private readonly jwtService: JwtService,
+  ) {}
 
-  @Get(':user_id')
-  getUserTemplates(@Param('user_id') user_id: string): Promise<Template[]> {
-    return this.templateService.getUserTemplates(user_id);
+  @Get()
+  getUserTemplates(@Req() request: Request): Promise<Template[]> {
+    const token = request.headers['authorization'].split(' ')[1];
+
+    const { id } = this.jwtService.verify(token, {
+      secret: process.env.JWT_SECRET,
+    });
+
+    return this.templateService.getUserTemplates(id);
   }
 
   @Post(':user_id')

@@ -25,7 +25,7 @@ model Template {
   background  String
   photo       String
   title       Title
-  items       Element
+  items       Element[]
   linkStyle   LinkStyle
   headerStyle HeaderStyle
 }
@@ -39,21 +39,11 @@ type Title {
 }
 
 type Element {
-  links   Link[]
-  headers Header[]
-}
-
-type Header {
-  text     String
-  position Int
-  enabled  Boolean
-}
-
-type Link {
-  name     String
-  url      String
-  position Int
-  enabled  Boolean
+  name    String
+  url     String?
+  enabled Boolean
+  type    String
+  image   String?
 }
 
 type LinkStyle {

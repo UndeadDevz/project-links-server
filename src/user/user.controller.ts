@@ -34,7 +34,6 @@ export class UserController {
   @Post('login')
   login(@Body() createUserDto: CreateUserDto) {
     const { email, password } = createUserDto;
-    console.log(email, password);
     return this.userService.loginUser(email, password);
   }
 
