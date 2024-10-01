@@ -14,6 +14,14 @@ export class TemplateService {
     });
   }
 
+  async getTemplate(id: string): Promise<Template> {
+    return this.prisma.template.findUnique({
+      where: {
+        template_id: id,
+      },
+    });
+  }
+
   async createTemplate(
     user_id: string,
     data: Prisma.TemplateCreateInput,
@@ -27,6 +35,18 @@ export class TemplateService {
           },
         },
       },
+    });
+  }
+
+  async updateTemplate(
+    id: string,
+    data: Prisma.TemplateUpdateInput,
+  ): Promise<Template> {
+    return this.prisma.template.update({
+      where: {
+        template_id: id,
+      },
+      data,
     });
   }
 }
