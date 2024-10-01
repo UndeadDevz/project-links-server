@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Req } from '@nestjs/common';
 import { TemplateService } from './template.service';
 import { Prisma, Template } from '@prisma/client';
 import { JwtService } from '@nestjs/jwt';
@@ -21,11 +21,24 @@ export class TemplateController {
     return this.templateService.getUserTemplates(id);
   }
 
+  @Get(':id')
+  getTemplate(@Param('id') id: string): Promise<Template> {
+    return this.templateService.getTemplate(id);
+  }
+
   @Post(':user_id')
   createTemplate(
     @Param('user_id') user_id,
     @Body() data: Prisma.TemplateCreateInput,
   ): Promise<Template> {
     return this.templateService.createTemplate(user_id, data);
+  }
+
+  @Put(':id')
+  updateTemplate(
+    @Param('id') id,
+    @Body() data: Prisma.TemplateUpdateInput,
+  ): Promise<Template> {
+    return this.templateService.updateTemplate(id, data);
   }
 }
