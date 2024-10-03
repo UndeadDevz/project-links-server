@@ -24,14 +24,14 @@ model Template {
   name        String
   background  String
   photo       String
-  title       Title
+  title       String 
   items       Element[]
   linkStyle   LinkStyle
   headerStyle HeaderStyle
+  titleStyle  TitleStyle
 }
 
-type Title {
-  text       String
+type TitleStyle {
   fontSize   String
   fontFamily String
   fontColor  String
