@@ -43,12 +43,6 @@ export class ImageController {
   async setImage(
     @Body() data: { template_id: string; index: number; url: string },
   ) {
-    console.log('data', data);
-    await this.templateService.addImageToElement({
-      template_id: data.template_id,
-      index: data.index,
-      url: data.url,
-    });
     return { url: data.url };
   }
 
@@ -63,11 +57,6 @@ export class ImageController {
       data.template_id,
       'https://pbs.twimg.com/profile_images/1599827064282140672/MSxVR5u6_400x400.jpg',
     );
-    await this.templateService.addImageToElement({
-      template_id: data.template_id,
-      index: data.index,
-      url: 'https://pbs.twimg.com/profile_images/1599827064282140672/MSxVR5u6_400x400.jpg',
-    });
     return { url: 'Todo bien guacho' };
   }
 }
