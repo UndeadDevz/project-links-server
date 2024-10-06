@@ -38,25 +38,4 @@ export class ImageController {
     );
     return { url: (await uploadResult).url };
   }
-
-  @Put('upload')
-  async setImage(
-    @Body() data: { template_id: string; index: number; url: string },
-  ) {
-    return { url: data.url };
-  }
-
-  @Put('photo')
-  @UseInterceptors(FileInterceptor('image'))
-  async uploadPhoto(
-    @UploadedFile(SharpPipe) image: Express.Multer.File,
-    @Body() data: { template_id: string; index: number },
-  ) {
-    const uploadResult = this.cloudinaryService.uploadFile(image);
-    await this.templateService.addPhotoToMedia(
-      data.template_id,
-      'https://pbs.twimg.com/profile_images/1599827064282140672/MSxVR5u6_400x400.jpg',
-    );
-    return { url: 'Todo bien guacho' };
-  }
 }
