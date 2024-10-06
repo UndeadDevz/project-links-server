@@ -1,14 +1,18 @@
 import {
+  Body,
   Controller,
   Post,
+  Put,
   Req,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { Prisma } from '@prisma/client';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { SharpPipe } from 'src/sharp/sharp.pipe';
+import { TemplateService } from 'src/template/template.service';
 import { UserService } from 'src/user/user.service';
 
 @Controller('image')
@@ -16,6 +20,7 @@ export class ImageController {
   constructor(
     private readonly cloudinaryService: CloudinaryService,
     private readonly userService: UserService,
+    private readonly templateService: TemplateService,
     private jwt: JwtService,
   ) {}
 

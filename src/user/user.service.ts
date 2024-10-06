@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { IUser } from './userDTO/userDTO';
-import { Prisma, User } from '@prisma/client';
+import { Prisma, Template, User } from '@prisma/client';
 import { JwtService } from '@nestjs/jwt';
 
 type Tokens = {
