@@ -4,11 +4,10 @@ import { ImageController } from './image.controller';
 import { UserModule } from 'src/user/user.module';
 import { JwtService } from '@nestjs/jwt';
 import { TemplateService } from 'src/template/template.service';
-import { PrismaService } from 'src/prisma/prisma.service';
 
 @Module({
   imports: [UserModule],
-  providers: [CloudinaryService, JwtService, TemplateService, PrismaService],
+  providers: [CloudinaryService, JwtService, TemplateService],
   controllers: [ImageController],
 })
 export class ImageModule {}

@@ -5,7 +5,6 @@ import { UserService } from './user/user.service';
 import { UserController } from './user/user.controller';
 import { TemplateController } from './template/template.controller';
 import { TemplateService } from './template/template.service';
-import { PrismaService } from './prisma/prisma.service';
 import { ConfigModule } from '@nestjs/config';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { ImageModule } from './image/image.module';
@@ -27,7 +26,6 @@ import { JwtStrategy } from './strategy/jwt.strategy';
     AppService,
     UserService,
     TemplateService,
-    PrismaService,
     JwtService,
     JwtStrategy,
   ],

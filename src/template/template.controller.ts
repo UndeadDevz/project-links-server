@@ -11,14 +11,13 @@ import {
 import { TemplateService } from './template.service';
 import { Prisma, Template } from '@prisma/client';
 import { JwtService } from '@nestjs/jwt';
-import { PrismaService } from 'src/prisma/prisma.service';
+import prisma from '../../lib/prisma';
 
 @Controller('template')
 export class TemplateController {
   constructor(
     private readonly templateService: TemplateService,
     private readonly jwtService: JwtService,
-    private prisma: PrismaService,
   ) {}
 
   @Get()

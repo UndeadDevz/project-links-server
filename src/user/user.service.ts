@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
 import { IUser } from './userDTO/userDTO';
-import { Prisma, Template, User } from '@prisma/client';
+import { Prisma, PrismaClient, Template, User } from '@prisma/client';
 import { JwtService } from '@nestjs/jwt';
+import prisma from 'lib/prisma';
 
 type Tokens = {
   access_token: string;
@@ -11,17 +11,14 @@ type Tokens = {
 
 @Injectable()
 export class UserService {
-  constructor(
-    private prisma: PrismaService,
-    private jwt: JwtService,
-  ) {}
+  constructor(private jwt: JwtService) {}
 
   async findAll(): Promise<User[]> {
-    return this.prisma.user.findMany();
+    return prisma.user.findMany();
   }
 
   async findUserWhitTemplates(user_id: string): Promise<User[]> {
-    return this.prisma.user.findMany({
+    return prisma.user.findMany({
       where: {
         user_id,
       },
@@ -37,13 +34,13 @@ export class UserService {
   }
 
   async createUser(data: Prisma.UserCreateInput): Promise<User> {
-    return this.prisma.user.create({
+    return prisma.user.create({
       data,
     });
   }
 
   async loginUser(email: string, password: string) {
-    const user = await this.prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: {
         email: email,
       },
@@ -72,7 +69,7 @@ export class UserService {
   }
 
   async findUser(token: any) {
-    const user = await this.prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: {
         email: token.email,
       },
@@ -130,7 +127,7 @@ export class UserService {
   }
 
   async addImageToMedia(user_id: string, url: string): Promise<User> {
-    return this.prisma.user.update({
+    return prisma.user.update({
       where: { user_id },
       data: {
         media: {

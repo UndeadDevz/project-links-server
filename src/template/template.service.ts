@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
+
 import { Prisma, Template } from '@prisma/client';
+import prisma from 'lib/prisma';
 
 interface Props {
   template_id: string;
@@ -10,10 +11,10 @@ interface Props {
 
 @Injectable()
 export class TemplateService {
-  constructor(private prisma: PrismaService) {}
+  constructor() {}
 
   async getUserTemplates(user_id: string): Promise<Template[]> {
-    return this.prisma.template.findMany({
+    return prisma.template.findMany({
       where: {
         owner_id: user_id,
       },
@@ -21,7 +22,7 @@ export class TemplateService {
   }
 
   async getTemplate(id: string): Promise<Template> {
-    return this.prisma.template.findUnique({
+    return prisma.template.findUnique({
       where: {
         template_id: id,
       },
@@ -29,7 +30,7 @@ export class TemplateService {
   }
 
   async createTemplate(user_id: string, data: any): Promise<Template> {
-    return this.prisma.template.create({
+    return prisma.template.create({
       data: {
         ...data,
         owner: {
@@ -45,7 +46,7 @@ export class TemplateService {
     id: string,
     data: Prisma.TemplateUpdateInput,
   ): Promise<Template> {
-    return this.prisma.template.update({
+    return prisma.template.update({
       where: {
         template_id: id,
       },
@@ -54,7 +55,7 @@ export class TemplateService {
   }
 
   async addPhotoToMedia(template_id: string, url: string): Promise<Template> {
-    return this.prisma.template.update({
+    return prisma.template.update({
       where: { template_id },
       data: {
         photo: url,
@@ -62,7 +63,7 @@ export class TemplateService {
     });
   }
   async deleteTemplate(id: string): Promise<Template> {
-    return this.prisma.template.delete({
+    return prisma.template.delete({
       where: {
         template_id: id,
       },
