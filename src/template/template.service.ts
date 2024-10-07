@@ -64,4 +64,11 @@ export class TemplateService {
       },
     });
   }
+  async deleteTemplate(id: string): Promise<Template> {
+    return this.prisma.template.delete({
+      where: {
+        template_id: id,
+      },
+    });
+  }
 }

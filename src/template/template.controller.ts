@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Post, Put, Req } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Req,
+} from '@nestjs/common';
 import { TemplateService } from './template.service';
 import { Prisma, Template } from '@prisma/client';
 import { JwtService } from '@nestjs/jwt';
@@ -40,5 +49,10 @@ export class TemplateController {
     @Body() data: Prisma.TemplateUpdateInput,
   ): Promise<Template> {
     return this.templateService.updateTemplate(id, data);
+  }
+
+  @Delete(':id')
+  deleteTemplate(@Param('id') id): Promise<Template> {
+    return this.templateService.deleteTemplate(id);
   }
 }
