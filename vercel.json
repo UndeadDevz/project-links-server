@@ -6,15 +6,6 @@
       "use": "@vercel/node"
     }
   ],
-  "env": {
-    "DATABASE_URL": "mongodb+srv://undeadevz:AHIejZeloW9LyVPJ@project-linkz.amo5qf8.mongodb.net/project-linkz",
-    "JWT_SECRET_REFRESH": "pato",
-    "AUTH0_ISSUER_URL": "dev-mzm2kjglry3ajlfq.us.auth0.com",
-    "AUTH0_AUDIENCE": "https://dev-mzm2kjglry3ajlfq.us.auth0.com/api/v2/",
-    "CLOUDINARY_CLOUD_NAME": "dyawxpem7",
-    "CLOUDINARY_API_KEY": "453684837829763",
-    "CLOUDINARY_SECRET": "_fxUYkLbsORruxD8fOgiu00iz-g"
-  },
   "routes": [
     {
       "src": "/(.*)",
