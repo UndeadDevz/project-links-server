@@ -28,10 +28,7 @@ export class TemplateService {
     });
   }
 
-  async createTemplate(
-    user_id: string,
-    data: Prisma.TemplateCreateInput,
-  ): Promise<Template> {
+  async createTemplate(user_id: string, data: any): Promise<Template> {
     return this.prisma.template.create({
       data: {
         ...data,
