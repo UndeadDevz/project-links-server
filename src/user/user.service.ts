@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { IUser } from './userDTO/userDTO';
-import { Prisma, PrismaClient, Template, User } from '@prisma/client';
+import { Prisma, PrismaClient, Template } from '@prisma/client';
 import { JwtService } from '@nestjs/jwt';
 import prisma from 'lib/prisma';
 
@@ -13,11 +13,11 @@ type Tokens = {
 export class UserService {
   constructor(private jwt: JwtService) {}
 
-  async findAll(): Promise<User[]> {
+  async findAll(): Promise<any[]> {
     return prisma.user.findMany();
   }
 
-  async findUserWhitTemplates(user_id: string): Promise<User[]> {
+  async findUserWhitTemplates(user_id: string): Promise<any[]> {
     return prisma.user.findMany({
       where: {
         user_id,
@@ -33,7 +33,7 @@ export class UserService {
     });
   }
 
-  async createUser(data: Prisma.UserCreateInput): Promise<User> {
+  async createUser(data: Prisma.UserCreateInput): Promise<any> {
     return prisma.user.create({
       data,
     });
@@ -126,7 +126,7 @@ export class UserService {
     };
   }
 
-  async addImageToMedia(user_id: string, url: string): Promise<User> {
+  async addImageToMedia(user_id: string, url: string): Promise<any> {
     return prisma.user.update({
       where: { user_id },
       data: {
