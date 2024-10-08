@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto, IUser } from './userDTO/userDTO';
-import { Prisma, User } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { JwtAuthGuard } from '../guard/jwtAuth.guard';
 
 @Controller('user')
@@ -17,17 +17,17 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  getAllUsers(): Promise<User[]> {
+  getAllUsers(): Promise<any[]> {
     return this.userService.findAll();
   }
 
   @Get('/withTemplates/:user_id')
-  getUserWhitTemplates(@Param('user_id') user_id): Promise<User[]> {
+  getUserWhitTemplates(@Param('user_id') user_id): Promise<any[]> {
     return this.userService.findUserWhitTemplates(user_id);
   }
 
   @Post('register')
-  createUser(@Body() userData: Prisma.UserCreateInput): Promise<User> {
+  createUser(@Body() userData: Prisma.UserCreateInput): Promise<any> {
     return this.userService.createUser(userData);
   }
 
