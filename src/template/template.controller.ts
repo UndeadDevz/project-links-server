@@ -66,7 +66,7 @@ export class TemplateController {
         fontWeight: '600',
       },
       name: '',
-      background: '#ffffff',
+      background: '#F9FAFB',
       photo:
         'https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg',
       title: '',
