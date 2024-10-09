@@ -12,10 +12,12 @@ import { UserModule } from './user/user.module';
 import { JwtService } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './strategy/jwt.strategy';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    ServeStaticModule.forRoot(),
     CloudinaryModule,
     ImageModule,
     UserModule,
